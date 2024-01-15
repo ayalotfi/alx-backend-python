@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
-'''Task 1's module.
 '''
+    The basics of async.
+'''
+
 import asyncio
-from typing import List
+import random
 
 
-wait_random = __import__('0-basic_async_syntax').wait_random
-
-
-async def wait_n(n: int, max_delay: int) -> List[float]:
-    '''Executes wait_random n times.
-    '''
-    wait_times = await asyncio.gather(
-        *tuple(map(lambda _: wait_random(max_delay), range(n)))
-    )
-    return sorted(wait_times)
+async def wait_random(max_delay: int = 10) -> float:
+    """
+    waits for a random delay between 0 and max_delay (included and float value)
+    seconds and eventually returns it.
+    """
+    delay = random.uniform(0, max_delay)
+    await asyncio.sleep(delay)
+    return delay
